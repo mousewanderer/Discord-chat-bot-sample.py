@@ -1,5 +1,5 @@
 #Api or Built in modules by multiple 
-import random,time,os,json, discord, re
+import random,time,json, discord
 from random import choice
 from discord.ext import commands
 import datetime 
@@ -195,21 +195,21 @@ async def on_message(message):
         Item=['rock','paper','scissor']
         aibet=choice(Item)
         if aibet == 'scissor':
-            if target== 'rock':
+            if target== 'rock' and target in Item:
                 result=winner
-            elif target =="scissor":
+            elif target =="scissor" and target in Item:
                 result=draw
             else: result= loser
         elif aibet== "rock":
-            if target=="paper":
+            if target=="paper" and target in Item:
                 result= winner
-            elif target== "rock":
+            elif target== "rock" and target in Item:
                 result= draw
             else: result =loser
         elif aibet=="paper":
-            if target=="scissor":
+            if target=="scissor" and target in Item:
                 result=winner
-            elif target=="paper":
+            elif target=="paper" and target in Item:
                 result=draw
             else: result= loser
         else: result="sorry invalid item"

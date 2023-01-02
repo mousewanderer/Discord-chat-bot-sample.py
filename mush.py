@@ -1,10 +1,10 @@
-import wikipedia
+#Built in modules
 import random,time,os
 from random import choice
-import warnings, json, time
+import json, time
 from bs4 import BeautifulSoup
 import requests
-
+#adding math
 import operator
 
 #setting digits to recognize the numerical value 
