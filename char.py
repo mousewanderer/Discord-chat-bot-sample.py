@@ -1,9 +1,8 @@
 #Gui or Built in modules
-import random,time,os
+import random,time
 from random import choice
 import requests
 from bs4 import BeautifulSoup 
-import requests
 
 
     #Create a function to get the price of a cryptocurrency
