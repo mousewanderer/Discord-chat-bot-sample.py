@@ -9,13 +9,23 @@ Discord API for python, time
 
 
 Here are the list of functions
+
 '?math- for perform calculation 
+
 '?change - changes the username
+
 '?cointoss - flip a coin
+
 '?rps - rock paper scissors
+
 '?casual - random casual talk 
+
 '?dice - rolling numbers from 1 to 6 
+
 '?pomodoro - This sets the pomodoro technique 
+
 '?5217 - This sets the 52/17 technique 
+
 '?quotes - Giving random inspirational quotes 
+
 '?cryptoprice (coins) - Get the price of the cryptocurrency 
