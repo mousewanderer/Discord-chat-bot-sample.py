@@ -3,10 +3,19 @@ import random,time
 from random import choice
 import requests
 from bs4 import BeautifulSoup 
-
+import difflib
+from difflib import get_close_matches
 
     #Create a function to get the price of a cryptocurrency
+def get_valid_coins():
+    url = "https://www.coincheckup.com/crypto-currencies"
+    HTML = requests.get(url)
+    soup = BeautifulSoup(HTML.text, 'html.parser')
+    valid_coins = [coin.text.lower() for coin in soup.find_all("td", attrs={'class':'coin-name'})]
+    return valid_coins
+
 def get_crypto_price(coin):
+    valid_coins = get_valid_coins()
     #Get the URL
     url = "https://www.google.com/search?q="+coin+"+price"
     #Make a request to the website
@@ -18,9 +27,14 @@ def get_crypto_price(coin):
         text = soup.find("div", attrs={'class':'BNeawe iBp4i AP7Wnd'}).text
         text = soup.find("div", attrs={'class':'BNeawe iBp4i AP7Wnd'}).find("div", attrs={'class':'BNeawe iBp4i AP7Wnd'}).text
     except AttributeError:
-        text="Invalid cryptocurrency"
+        close_match = get_close_matches(coin, valid_coins, n=1, cutoff=0.6)
+        if close_match:
+            text = f"Invalid cryptocurrency, did you mean {close_match[0]}?"
+        else:
+            text = "Invalid cryptocurrency"
     #Return the text
     return text
+
 
 class hamster:
     '''Character hamster Charlie'''
@@ -136,12 +150,10 @@ class hamster:
         third_text = words12
         whole= full_text + second_text +third_text
         return whole
-
-
+    
     def cryptoPrice(self,recieve):
     #Choose the cryptocurrency that you want to get the price of (e.g. bitcoin, litecoin)
-        crypto = recieve
-        #Get the price of the crypto currency
-        price = get_crypto_price(coin=crypto)
-        return price
-
+    crypto = recieve
+    #Get the price of the crypto currency
+    price = get_crypto_price(coin=crypto)
+    return price
