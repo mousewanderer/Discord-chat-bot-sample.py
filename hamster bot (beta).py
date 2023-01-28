@@ -49,8 +49,31 @@ async def on_ready():
 @bot.event
 async def on_message(message):
     if message.author == bot.user:
+        global previous_message
         return
-    
+
+# Create a dictionary to store the message count
+message_count = {}
+
+# Create a variable to store the previous message
+previous_message = ""
+
+    # Clear the message_count dictionary if the previous message is different from the current message
+    if previous_message != message.content:
+        message_count.clear()
+        previous_message = message.content
+
+    # Check if the message is in the message_count dictionary
+    if message.content in message_count:
+        message_count[message.content] += 1
+    else:
+        message_count[message.content] = 1
+
+    # Check if the message has been repeated 10 times
+    if message_count[message.content] >= 10:
+        await message.delete()
+        await message.channel.send("This message has been deleted as it is considered as spam.")
+
 #change user name command line
     elif message.content.lower()=='?change':
         await message.channel.send('what is your name?') #request the name
