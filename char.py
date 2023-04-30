@@ -112,7 +112,7 @@ class hamster:
             return mix
         bad1='My friend Mush said that bad words are bad manners'
         bad2='Please Mind your words'
-        bad3='Well those words are\'nt elegant '
+        bad3='Well those words aren\'t elegant '
         bad4='Improper mouth goes to an improper place'
 
         respond_bad=[bad1,bad2,bad3]
@@ -145,15 +145,21 @@ class hamster:
         words10='?5217 - This sets the 52/17 technique \n \n'
         words11='?quotes - Giving random inspirational quotes \n \n'
         words12='?cryptoprice (coins) - Get the price of the cryptocurrency \n \n'
+        words13='?fact - Get the random fact\n \n'
+        words14='?factchange- Enable to on or off explict content of random fact\n \n'
+        words15='?passgen - Generates a password\n \n'
+        
         full_text=words + words1 + words2+ words4 + words5
+        
         second_text= words6 + words7 + words8 + words9 + words10 + words11
-        third_text = words12
-        whole= full_text + second_text +third_text
+        
+        third_text = words12 + words13 + words14 + words15
+        whole= full_text + second_text +third_text 
         return whole
     
     def cryptoPrice(self,recieve):
     #Choose the cryptocurrency that you want to get the price of (e.g. bitcoin, litecoin)
-    crypto = recieve
+        crypto = recieve
     #Get the price of the crypto currency
-    price = get_crypto_price(coin=crypto)
-    return price
+        price = get_crypto_price(coin=crypto)
+        return price
