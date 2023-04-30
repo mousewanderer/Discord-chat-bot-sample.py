@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 import requests
 #adding math
 import operator
+import randfacts
 
 #setting digits to recognize the numerical value 
 DIGITS = set('0123456789')
@@ -32,7 +33,7 @@ def get_number(varstr):
         if not is_digit(c):
             break
         s += c
-    return (int(s), len(s))
+    return (float(int(s)), len(s))
 # performing the math stuff
 def perform_operation(string, num1, num2):
     op = OPERATIONS.get(string, None)
@@ -59,6 +60,8 @@ def eval_math_expr(expr):
             break
     return number1
 
+
+
 #class part of the module
 
 class mushroom:
@@ -66,9 +69,13 @@ class mushroom:
     species='Apodemus Flavicollis'
 
 
-    def __int__(self,quotes,insert):
+    def __int__(self,quotes,insert,fact,change,passgen,changers):
         self.quotes= quotes
         self.insert =insert
+        self.fact = fact
+        self.change= change
+        self.passgen= passgen
+        self.changers= changers
 
 # used to get quotes 
     def get_quote(self):
@@ -76,21 +83,52 @@ class mushroom:
         json_data = json.loads(response.text) #loads from json file
         quote = json_data[0]['q'] + " -" + json_data[0]['a'] #quote line + space + author of the quote
         return quote
+
+    
 #used to perfrom math using strings
     def mathcommand(self,insert):
         expr = insert #insert the string
         try: # adding this to pass errors
             something= eval_math_expr(expr)
+            
         except:
             something= "something went wrong" #add something wrong
+            
         else: #other errors
             for expr, res in {"2": 2, "2*4": 8, "4+8": 12, "100/3": 33, "2^3": 8, "-2": -2, "-2-3": -5}.items():
                 result = eval_math_expr(expr)
+                
                 if res != result:
                     something= "Computing", expr, "got", result, "instead of", res
         return something
 
+    def facts(self,change):
+        if change == True:
+            # explicit content filter 
+            x =randfacts.get_fact(True)
+        else:
+            x =randfacts.get_fact(False)
+        return x
+    
+#password generator
+    def passgenerate(self,changers):
+        num="1234567890"
+        letter="qwertyuiopasdfghjklzxcvbnm"
+        symbol="!@#)({}"
+        h= changers
+        password=""
 
+        content= num + letter + symbol
+        content = content.split()
+        content = choice(content)
+        if h > 50:
+            return "Sorry We cannot make more than 50 characters"
+        else:
+            for some in range(h):
+                password += choice(content)
+            return password
+
+    
     
     
     

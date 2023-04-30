@@ -1,15 +1,16 @@
 #Api or Built in modules by multiple 
-import random,time,json, discord
+import random,time, json
+import discord
 from random import choice
 from discord.ext import commands
 import datetime 
 from urllib import parse, request
-from dotenv import load_dotenv
+
 
 
 #made modules by the programmer
 import remeber
-from remeber  import greet_user,  get_stored_username, get_username 
+from remeber  import greet_user,  get_stored_username, get_username, Explict_stored
 from remeber import get_stored_age, countdown, badWords ,goodWords, neutralWords
 
 
@@ -30,6 +31,10 @@ rororo=True
 mathematics=True
 # turn used for the game rock paper scissors
 turn=True
+#passgen
+passgenerator=True
+#filter content
+notexplict = True
 
 #important and setted info for the correct request
 username=  get_stored_username()
@@ -39,26 +44,28 @@ player=hamster(name= username,age=age,recieve='neutral')
 addon=mushroom()
 
 # The bottom line is the discord bot running code for commands 
-
-bot = commands.Bot(command_prefix="!")
+bot = commands.Bot(command_prefix="!",intents=discord.Intents.default())
 #used to notify the 
 @bot.event
 async def on_ready():
     print(f'{bot.user} has connected to Discord!')
     
+global previous_message
+previous_message = ""
+global message_count
+message_count = {}
 @bot.event
 async def on_message(message):
     if message.author == bot.user:
-        global previous_message
         return
+    # Create a dictionary to store the message count
 
-# Create a dictionary to store the message count
-message_count = {}
 
 # Create a variable to store the previous message
-previous_message = ""
 
     # Clear the message_count dictionary if the previous message is different from the current message
+    global previous_message
+    global message_count 
     if previous_message != message.content:
         message_count.clear()
         previous_message = message.content
@@ -86,7 +93,8 @@ previous_message = ""
         with open(file, 'w') as f:
                 json.dump(username,f) #dumped in json file
         await message.channel.send(str('what is your favorite number?')) #request favorite number
-        global rororo #global function used to change details in if_else
+        #global function used to change details in if_else
+        global rororo
         rororo= False # turning it false to obey the elif line below
         masterkey=True #setting back to true to prevent line conflict
         
@@ -238,10 +246,47 @@ previous_message = ""
         else: result="sorry invalid item"
         await message.channel.send(result)
         turn= True
+
+    elif '?fact' == message.content:
+        change= Explict_stored()
+        await message.channel.send(addon.facts(change))
+
+    elif '?factchange' == message.content:
+        await message.channel.send('Do you want to turn on explict(yes/no)?')
+        global notexplict
+        notexplict = False
+        
+    elif notexplict == False  and message.content== message.content:
+         if "yes" == message.content.lower():
+             change = False
+         elif "no" == message.content.lower():
+             change = True
+         else:
+             change = True
+         file= 'Explict.json' #open the file of the username
+         with open(file, 'w') as f:
+             json.dump(change,f) #dumped in json file
+         await message.channel.send(' ?')
+
+         notexplict = True
+    
+    elif '?passgen' == message.content:
+         await message.channel.send('How many characters needed in the password?')
+         await message.channel.send('(default 8 characters) (cannot generate more than 50 characters')
+         global passgenerator
+         passgenerator=False
+    elif message.content== message.content and passgenerator==False:
+        try:
+            trial = int(message.content)
+        except ValueError:
+            trial = 8
+        await message.channel.send(addon.passgenerate(trial))
+        passgenerator= True
+        
         
         
 
-bot.run('Insert token')
+bot.run('OTc0OTI4MDExNzQyODA2MDQ2.GFGK78.gGZwUIEniET7zbtFltnuS45M_iJH-u1YU8--nk')
 
 
 

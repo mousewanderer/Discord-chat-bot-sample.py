@@ -35,7 +35,15 @@ def get_username():
                 json.dump(age,a)
             print(f"We'll remember you {username}")
             
-
+def Explict_stored():
+    file= "Explict.json"
+    try:
+        with open(file) as f:
+            explict=  json.load(f)
+    except FileNotFoundError:
+        return True
+    else:
+        return explict
 
 #greeting
 def greet_user():
