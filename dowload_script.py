@@ -9,5 +9,5 @@ list_of_modules =["urllib","numpy","discord.py",
 
 
 for downloads in list_of_modules:
-    time.sleep(1)
+    time.sleep(2)
     os.system(f'pip install {downloads}')
