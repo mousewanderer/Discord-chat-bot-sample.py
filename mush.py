@@ -101,7 +101,7 @@ class mushroom:
                 if res != result:
                     something= "Computing", expr, "got", result, "instead of", res
         return something
-
+#part where facts are generated 
     def facts(self,change):
         if change == True:
             # explicit content filter 
@@ -119,9 +119,11 @@ class mushroom:
         password=""
 
         content= num + letter + symbol
+        #splitting into a list (array)
         content = content.split()
         content = choice(content)
         if h > 50:
+            #setting a word limit
             return "Sorry We cannot make more than 50 characters"
         else:
             for some in range(h):
