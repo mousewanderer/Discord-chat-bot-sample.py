@@ -5,60 +5,51 @@ import json, time
 from bs4 import BeautifulSoup
 import requests
 #adding math
-import operator
 import randfacts
 
-#setting digits to recognize the numerical value 
-DIGITS = set('0123456789')
-# Using operators to define the value of the symbols
-OPERATIONS = {
-    '+' : operator.add, #addition
-    '-' : operator.sub, #subtraction
-    '*' : operator.mul, #multiplication
-    '/' : operator.floordiv, #division with + 1
-    '^' : operator.pow, #raise to the power of 
-}
+def add_spacing(expression):
+    operators = ['+', '-', '*', '/']
+    spaced_expression = ""
+    for char in expression:
+        if char.isdigit() or char in operators:
+            spaced_expression += " " + char + " "
+        elif char != " ":
+            spaced_expression += char
+    return spaced_expression.strip()
 
-#used to return to digits
-def is_digit(var):
-    return var in DIGITS
+def calculate(expression):
+    parts = expression.split()
+    result = 0
+    operator = "+"
+    pending_operation = None
 
-#used to collect numbers available to the string (scanning phase)
-def get_number(varstr):
-    s = ""
-    if varstr[0] == '-':
-        s += "-"
-        varstr = varstr[1:]
-    for c in varstr:
-        if not is_digit(c):
-            break
-        s += c
-    return (float(int(s)), len(s))
-# performing the math stuff
-def perform_operation(string, num1, num2):
-    op = OPERATIONS.get(string, None)
-    if op is not None:
-        return op(num1, num2)
-    else:
-        return None
-# Handle things to evade possible errors of the calculations
+    for part in parts:
+        if part.isdigit():
+            if operator == "+":
+                result += int(part)
+            elif operator == "-":
+                result -= int(part)
+            elif operator == "*":
+                if pending_operation is not None:
+                    result = pending_operation(result, int(part))
+                    pending_operation = None
+                else:
+                    result *= int(part)
+            elif operator == "/":
+                if pending_operation is not None:
+                    result = pending_operation(result, int(part))
+                    pending_operation = None
+                else:
+                    result /= int(part)
+        else:
+            if part == "*":
+                pending_operation = lambda x, y: x * y
+            elif part == "/":
+                pending_operation = lambda x, y: x / y
+            else:
+                operator = part
 
-def eval_math_expr(expr):
-    while True:
-        try: 
-            number1, end_number1 = get_number(expr)
-            expr = expr[end_number1:]
-            if expr == '':
-                return number1
-            op = expr[0]
-            expr = expr[1:]
-            number2, end_number2 = get_number(expr)
-            number1 = perform_operation(op, number1, number2)
-            expr = str(number1) + expr[end_number2:]
-        except Exception as e:
-            print(e)
-            break
-    return number1
+    return result
 
 
 
@@ -89,17 +80,14 @@ class mushroom:
     def mathcommand(self,insert):
         expr = insert #insert the string
         try: # adding this to pass errors
-            something= eval_math_expr(expr)
-            
+            something= calculate(expr)
+        except ValueError:
+            something = "Error: Invalid value. Cannot convert the given string to an integer."
+        except ZeroDivisionError:
+            something= "Error: Division by zero is not allowed."
         except:
-            something= "something went wrong" #add something wrong
+            something= "Errorsomething went wrong" #add something wrong
             
-        else: #other errors
-            for expr, res in {"2": 2, "2*4": 8, "4+8": 12, "100/3": 33, "2^3": 8, "-2": -2, "-2-3": -5}.items():
-                result = eval_math_expr(expr)
-                
-                if res != result:
-                    something= "Computing", expr, "got", result, "instead of", res
         return something
 #part where facts are generated 
     def facts(self,change):
@@ -122,7 +110,7 @@ class mushroom:
         #splitting into a list (array)
         content = content.split()
         content = choice(content)
-        if h > 50:
+        if h > 1000:
             #setting a word limit
             return "Sorry We cannot make more than 50 characters"
         else:

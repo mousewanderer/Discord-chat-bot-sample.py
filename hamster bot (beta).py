@@ -35,6 +35,8 @@ turn=True
 passgenerator=True
 #filter content
 notexplict = True
+#math operation while loo
+creeet=True
 
 #important and setted info for the correct request
 username=  get_stored_username()
@@ -152,55 +154,66 @@ async def on_message(message):
         mathematics= False
         await message.channel.send('What do you want to calculate?')
         await message.channel.send("I can't do parenthesis and please use numerical symbols")
-        await message.channel.send(" + : addition \n- : subtraction\n * : multiplication\n/ : division with + 1\n^: raise to the power of ")
+        await message.channel.send(" + : addition \n- : subtraction\n* : multiplication\n/ : division\n^: raise to the power of ")
+        await message.channel.send("And add distance with each numbers and symbols")
+        await message.channel.send("Example: 8 + 3 / 1 - 2 * 12")
+        
 
     elif message.content==message.content and mathematics==False:
-        await message.channel.send(f'The answer of {message.content} is')
-        value= message.content
-        await message.channel.send(addon.mathcommand(insert=value))
-        mathematics= True
+        if message.content=="q" or message.content=="Q" and mathematics==False:
+            mathematics= True
+            await message.channel.send("Exitted Math Operation")
+            
+        else:
+            await message.channel.send(f'The answer of {message.content} is')
+            value= message.content
+            await message.channel.send(addon.mathcommand(insert=value))
+            await message.channel.send('What else do you wnant to calculate \nType "q" to quit')
+        
         
         
 #Time management start
     elif message.content=='?pomodoro':
         await message.channel.send("Your 25 minute work time have been started ")
-        base= 25 
-        given= base*60 #turning 25 sec to 25 minutes
+        base= 25
+        mins= 1
+        given= base* mins #turning 25 sec to 25 minutes
         #intial of 25 minutes of work and +5 minutes in every break
         await message.channel.send(countdown(given=given,logic='y'))
-        breaktime=given + 5*60 #25 minutes + 5 minutes = total 30 minutes
+        breaktime=given + 5* mins #25 minutes + 5 minutes = total 30 minutes
         #30 minutes - 25 minutes(intial given)= 5 minute break time
         await message.channel.send(countdown(given=breaktime,logic='n'))
         given2= given + breaktime #25 minutes + 30 minutes = 55 minutes
         #55 minutes - 30 minutes(break time) -= 25 minutes of work
         await message.channel.send(countdown(given=given2,logic='y'))
-        breaktime=given2 + 10*60 #55 minutes + 10 minutes = 65 minutes
+        breaktime=given2 + 10*mins #55 minutes + 10 minutes = 65 minutes
         #65 minutes - 55 minutes(given2)= 10 minute break
         await message.channel.send(countdown(given=breaktime,logic='n'))
         given3 = given +breaktime #25 minutes  + 65 minutes = 90 minutes
         #90 minutes - 65 minutes = 25 minutes of work
         await message.channel.send(countdown(given=given3,logic='y'))
-        breaktime=given3 + 15*60 #90 minutes +15 minutes= 105 minutes
+        breaktime=given3 + 15* mins #90 minutes +15 minutes= 105 minutes
         await message.channel.send(countdown(given=breaktime,logic='stop'))
 
     elif message.content=='?5217':
          await message.channel.send("Your 52 minute work time have been started ")
          base=52
+         mins=60
          given=52*60 #turning 52 sec to 52 minutes
          await message.channel.send(countdown(given=given,logic='y'))
-         breaktime=given + 17*60 #52 minutes + 17 minutes= 69 minutes
+         breaktime=given + 17*mins #52 minutes + 17 minutes= 69 minutes
          await message.channel.send(countdown(given=breaktime,logic='n'))
          given2= given + breaktime # 52 minutes + 69 minutes = 121 minutes 
          await message.channel.send(countdown(given=given2,logic='y'))
-         breaktime=given2 + 17*60 # 121 minutes + 17 minutes = 138 minutes
+         breaktime=given2 + 17*mins# 121 minutes + 17 minutes = 138 minutes
          await message.channel.send(countdown(given=breaktime,logic='stop'))
 
 #stock price crypto
     elif '?cryptoprice' in message.content:
         value= message.content
-        await message.channel.send(f'The price of {value}')
         #removing cryptoprice in the message
         msg=value.replace('?cryptoprice', '')
+        await message.channel.send(f'The price of {msg}')
         await message.channel.send(player.cryptoPrice(recieve=msg))
         
 # adding quotes function
@@ -249,6 +262,11 @@ async def on_message(message):
 
     elif '?fact' == message.content:
         change= Explict_stored()
+        global notexplict
+        if noteexplict == False:
+            await message.channel.send("Explict Deactivated")
+        else:
+            await message.channel.send("Explict Activated")
         await message.channel.send(addon.facts(change))
 
     elif '?factchange' == message.content:
@@ -272,7 +290,7 @@ async def on_message(message):
     
     elif '?passgen' == message.content:
          await message.channel.send('How many characters needed in the password?')
-         await message.channel.send('(default 8 characters) (cannot generate more than 50 characters')
+         await message.channel.send('(default 8 characters) (cannot generate more than 1000 characters')
          global passgenerator
          passgenerator=False
     elif message.content== message.content and passgenerator==False:
@@ -286,7 +304,7 @@ async def on_message(message):
         
         
 
-bot.run('OTc0OTI4MDExNzQyODA2MDQ2.GFGK78.gGZwUIEniET7zbtFltnuS45M_iJH-u1YU8--nk')
+bot.run('OTc0OTI4MDExNzQyODA2MDQ2.GYzto9.0bSujEsSrws_y9uQtG8ONCPInGoe4c65i-9OiE')
 
 
 
