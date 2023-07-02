@@ -22,6 +22,7 @@ Here are the list of functions
 ?dice - rolling numbers from 1 to 6 
 
 ?pomodoro - This sets the pomodoro timer for productivity
+
 ?5217 - This sets the 52/17 timer for productivity
 
 ?quotes - Generate random inspirational quotes 
