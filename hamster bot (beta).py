@@ -2,6 +2,7 @@
 import random,time, json
 import discord
 from random import choice
+from random import shuffle
 from discord.ext import commands
 import datetime 
 from urllib import parse, request
@@ -35,8 +36,10 @@ turn=True
 passgenerator=True
 #filter content
 notexplict = True
-#math operation while loo
+#math operation while loop
 creeet=True
+#Russian Roullete
+RussianRoullete= True
 
 #important and setted info for the correct request
 username=  get_stored_username()
@@ -155,7 +158,6 @@ async def on_message(message):
         await message.channel.send('What do you want to calculate?')
         await message.channel.send("I can't do parenthesis and please use numerical symbols")
         await message.channel.send(" + : addition \n- : subtraction\n* : multiplication\n/ : division\n^: raise to the power of ")
-        await message.channel.send("And add distance with each numbers and symbols")
         await message.channel.send("Example: 8 + 3 / 1 - 2 * 12")
         
 
@@ -168,7 +170,7 @@ async def on_message(message):
             await message.channel.send(f'The answer of {message.content} is')
             value= message.content
             await message.channel.send(addon.mathcommand(insert=value))
-            await message.channel.send('What else do you wnant to calculate \nType "q" to quit')
+            await message.channel.send('What else do you want to calculate \nType "q" to quit')
         
         
         
@@ -213,7 +215,7 @@ async def on_message(message):
         value= message.content
         #removing cryptoprice in the message
         msg=value.replace('?cryptoprice', '')
-        await message.channel.send(f'The price of {msg}')
+        await message.channel.send(f'The price of {msg} is')
         await message.channel.send(player.cryptoPrice(recieve=msg))
         
 # adding quotes function
@@ -259,11 +261,12 @@ async def on_message(message):
         else: result="sorry invalid item"
         await message.channel.send(result)
         turn= True
-
+        
+#Generating facts
     elif '?fact' == message.content:
         change= Explict_stored()
         global notexplict
-        if noteexplict == False:
+        if notexplict == False:
             await message.channel.send("Explict Deactivated")
         else:
             await message.channel.send("Explict Activated")
@@ -271,9 +274,8 @@ async def on_message(message):
 
     elif '?factchange' == message.content:
         await message.channel.send('Do you want to turn on explict(yes/no)?')
-        global notexplict
         notexplict = False
-        
+#turning off and on the explict content
     elif notexplict == False  and message.content== message.content:
          if "yes" == message.content.lower():
              change = False
@@ -287,7 +289,8 @@ async def on_message(message):
          await message.channel.send(' ?')
 
          notexplict = True
-    
+         
+#Generating passwords    
     elif '?passgen' == message.content:
          await message.channel.send('How many characters needed in the password?')
          await message.channel.send('(default 8 characters) (cannot generate more than 1000 characters')
@@ -300,11 +303,41 @@ async def on_message(message):
             trial = 8
         await message.channel.send(addon.passgenerate(trial))
         passgenerator= True
-        
-        
-        
 
-bot.run('OTc0OTI4MDExNzQyODA2MDQ2.GYzto9.0bSujEsSrws_y9uQtG8ONCPInGoe4c65i-9OiE')
+ #Russian Roullete Game    
+    elif message.content in '?russianroullete':
+        await message.channel.send('*Charlie suddenly changes his appearance into more sinister look')
+        await message.channel.send("I always bring my revolver around me. \nIn 1 bullet in 6 chambers, \nsay spin if you want it to spin. \nsay anything else then it is a shoot")
+        global RussianRoullete #global function used to activate russian roullete in if_else
+        RussianRoullete= False
+
+    elif message.content=="spin" and RussianRoullete==False or message.content=="Spin" and RussianRoullete==False:
+        cartidge = ["empyt","empyt","empyt","empyt","empyt","bullet"]
+        cartidge.shuffle()
+        if cartidge[0] == "empty":
+            await message.channel.send("You did not die")
+        elif cartidge[0] == "bullet":
+            await message.channel.send("You are dead")
+        else:
+            pass
+        RussianRoullete= True
+    elif message.content==message.content and RussianRoullete==False:
+        cartidge = ["empyt","empyt","empyt","empyt","empyt","bullet"]
+        value= choice(cartidge)
+        if value == "empty":
+            await message.channel.send("You did not die")
+        elif value == "bullet":
+            await message.channel.send("You are dead")
+        else:
+            pass
+        RussianRoullete= True
+             
+         
+ 
+        
+        
+#add a discord token this line of code
+bot.run('"INSERT DISCORD TOKEN HERE')
 
 
 

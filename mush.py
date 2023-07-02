@@ -6,51 +6,25 @@ from bs4 import BeautifulSoup
 import requests
 #adding math
 import randfacts
+import math
 
-def add_spacing(expression):
-    operators = ['+', '-', '*', '/']
-    spaced_expression = ""
-    for char in expression:
-        if char.isdigit() or char in operators:
-            spaced_expression += " " + char + " "
-        elif char != " ":
-            spaced_expression += char
-    return spaced_expression.strip()
+def add(x, y):
+    return x + y
 
-def calculate(expression):
-    parts = expression.split()
-    result = 0
-    operator = "+"
-    pending_operation = None
+def subtract(x, y):
+    return x - y
 
-    for part in parts:
-        if part.isdigit():
-            if operator == "+":
-                result += int(part)
-            elif operator == "-":
-                result -= int(part)
-            elif operator == "*":
-                if pending_operation is not None:
-                    result = pending_operation(result, int(part))
-                    pending_operation = None
-                else:
-                    result *= int(part)
-            elif operator == "/":
-                if pending_operation is not None:
-                    result = pending_operation(result, int(part))
-                    pending_operation = None
-                else:
-                    result /= int(part)
-        else:
-            if part == "*":
-                pending_operation = lambda x, y: x * y
-            elif part == "/":
-                pending_operation = lambda x, y: x / y
-            else:
-                operator = part
+def multiply(x, y):
+    return x * y
 
-    return result
+def divide(x, y):
+    if y != 0:
+        return x / y
+    else:
+        return "Error: Division by zero is not allowed."
 
+def power(x, y):
+    return x ** y
 
 
 #class part of the module
@@ -79,16 +53,12 @@ class mushroom:
 #used to perfrom math using strings
     def mathcommand(self,insert):
         expr = insert #insert the string
-        try: # adding this to pass errors
-            something= calculate(expr)
-        except ValueError:
-            something = "Error: Invalid value. Cannot convert the given string to an integer."
-        except ZeroDivisionError:
-            something= "Error: Division by zero is not allowed."
-        except:
-            something= "Errorsomething went wrong" #add something wrong
-            
-        return something
+        try:
+            result = eval(expr)
+            return result
+        except Exception as e:
+            return "Error:", str(e)
+        
 #part where facts are generated 
     def facts(self,change):
         if change == True:
