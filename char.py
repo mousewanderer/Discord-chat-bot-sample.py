@@ -148,12 +148,15 @@ class hamster:
         words13='?fact - Get the random fact\n \n'
         words14='?factchange- Enable to on or off explict content of random fact\n \n'
         words15='?passgen - Generates a password\n \n'
+        words16='?russianroullete - PLays Russian ROullete\n \n'
+        words17="?meme - Sends random memes\n \n"
+        words18="?summary - Summamrize long paragraph (text)\n \n" 
         
         full_text=words + words1 + words2+ words4 + words5
         
         second_text= words6 + words7 + words8 + words9 + words10 + words11
         
-        third_text = words12 + words13 + words14 + words15
+        third_text = words12 + words13 + words14 + words15 + words16 + words17 + words18
         whole= full_text + second_text +third_text 
         return whole
     

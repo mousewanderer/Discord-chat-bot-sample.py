@@ -1,52 +1,68 @@
-#Api or Built in modules by multiple 
-import random,time, json
-import discord
-from random import choice
-from random import shuffle
-from discord.ext import commands
-import datetime 
-from urllib import parse, request
+#________________________________________________
+                                         #      |   
+#Api or Built in modules by multiple     #      |
+import random,time, json                 #      |
+import discord                           #     /
+import requests                          #    /
+from random import choice                #   /
+from random import shuffle               #  |
+from discord.ext import commands         #  |
+import datetime                          #  |
+from urllib import parse, request        # /
+#________________________________________#/
+#
+#
+#
+#
+#
+#
+#
+#_______________________________________________________________________________________________________________
+                                                                                                                #
+#made modules by the programmer                                                                                 #
+import remeber                                                                                                  #
+from remeber  import greet_user,  get_stored_username, get_username, Explict_stored                             #
+from remeber import get_stored_age, countdown, badWords ,goodWords, neutralWords                                #
+#---------------------------------------------------------------------------------------------------------------#
+#character's purpose to import command lines                                                                    #                                                           
+import char                                                                                                      #
+from char import hamster                                                                                         #
+#adding another character name mush                                                                              #
+import mush                                                                                                      #
+from mush import mushroom                                                                                       #
+#---------------------------------------------------------------------------------------------------------------#
+#important and setted info for the correct request                                                              #
+username=  get_stored_username()                                                                                #
+age= get_stored_age()                                                                                           #
+player=hamster(name= username,age=age,recieve='neutral')                                                        #
+                                                                                                                #
+addon=mushroom()                                                                                                #
+#_______________________________________________________________________________________________________________#
 
 
 
-#made modules by the programmer
-import remeber
-from remeber  import greet_user,  get_stored_username, get_username, Explict_stored
-from remeber import get_stored_age, countdown, badWords ,goodWords, neutralWords
+#____________________________________________________________________________________________
+#Boolean stuff                                                                               #
+# masterkey is the name change                                                               #
+masterkey=True                                                                               #
+#rororo is the favorite number change                                                        #
+rororo=True                                                                                 #
+# mathematics used to notify string to math                                                 #
+mathematics=True                                                                            #******
+# turn used for the game rock paper scissors                                                #******-------
+turn=True                                                                                   #****** 
+#passgen                                                                                    #******
+passgenerator=True                                                                          #******+++++++
+#filter content                                                                             #******
+notexplict = True                                                                           #
+#math operation while loop                                                                  #
+creeet=True                                                                                 #
+#Russian Roullete                                                            _______________#
+RussianRoullete= True                                                       #
+Summaries=True                                                              #
+#___________________________________________________________________________#
 
 
-#character's purpose to import command lines
-import char
-from char import hamster
-#adding another character name mush
-import mush
-from mush import mushroom
-
-
-#Boolean stuff
-# masterkey is the name change
-masterkey=True
-#rororo is the favorite number change
-rororo=True
-# mathematics used to notify string to math
-mathematics=True
-# turn used for the game rock paper scissors
-turn=True
-#passgen
-passgenerator=True
-#filter content
-notexplict = True
-#math operation while loop
-creeet=True
-#Russian Roullete
-RussianRoullete= True
-
-#important and setted info for the correct request
-username=  get_stored_username()
-age= get_stored_age()
-player=hamster(name= username,age=age,recieve='neutral')
-
-addon=mushroom()
 
 # The bottom line is the discord bot running code for commands 
 bot = commands.Bot(command_prefix="!",intents=discord.Intents.default())
@@ -59,6 +75,8 @@ global previous_message
 previous_message = ""
 global message_count
 message_count = {}
+
+    
 @bot.event
 async def on_message(message):
     if message.author == bot.user:
@@ -66,7 +84,7 @@ async def on_message(message):
     # Create a dictionary to store the message count
 
 
-# Create a variable to store the previous message
+# Create a variable to store the previous message for spams
 
     # Clear the message_count dictionary if the previous message is different from the current message
     global previous_message
@@ -83,8 +101,7 @@ async def on_message(message):
 
     # Check if the message has been repeated 10 times
     if message_count[message.content] >= 10:
-        await message.delete()
-        await message.channel.send("This message has been deleted as it is considered as spam.")
+        await message.channel.send("Stop Spamming please")
 
 #change user name command line
     elif message.content.lower()=='?change':
@@ -227,7 +244,7 @@ async def on_message(message):
         coinrange=choice(cointoss)
         await message.channel.send(coinrange)
 # rock paper scissors 
-    elif message.content in '?rps':
+    elif message.content == '?rps':
         await message.channel.send('okay I will play')
         await message.channel.send('What do you choose?  \nrock\npaper\nscissor')
         global turn
@@ -312,32 +329,52 @@ async def on_message(message):
         RussianRoullete= False
 
     elif message.content=="spin" and RussianRoullete==False or message.content=="Spin" and RussianRoullete==False:
-        cartidge = ["empyt","empyt","empyt","empyt","empyt","bullet"]
-        cartidge.shuffle()
-        if cartidge[0] == "empty":
+        cartidge = ["empty","empty","empty","empty","empty","bullet"]
+        def shuffle_list(lst):
+            lst2 = lst.copy()
+            random.shuffle(lst2)
+            return lst2
+        S_cartidge = shuffle_list(cartidge)
+        if S_cartidge[0] == "empty":
             await message.channel.send("You did not die")
-        elif cartidge[0] == "bullet":
+        elif S_cartidge[0] == "bullet":
             await message.channel.send("You are dead")
         else:
-            pass
+            await message.channel.send("My gun is broken")
         RussianRoullete= True
     elif message.content==message.content and RussianRoullete==False:
-        cartidge = ["empyt","empyt","empyt","empyt","empyt","bullet"]
+        cartidge = ["empty","empty","empty","empty","empty","bullet"]
         value= choice(cartidge)
         if value == "empty":
             await message.channel.send("You did not die")
         elif value == "bullet":
             await message.channel.send("You are dead")
         else:
-            pass
+            await message.channel.send("My Gun is broken")
         RussianRoullete= True
-             
-         
- 
-        
+#sends random memes
+    elif message.content=="?meme" :
+        content = requests.get("https://meme-api.com/gimme").text
+        data = json.loads(content)
+        embed = discord.Embed(title=f"{data['title']}", color=discord.Colour.random()).set_image(url=f"{data['url']}")
+        await message.channel.send(embed=embed)
+
+#summarizer
+    elif message.content== "?summary":
+        await message.channel.send("What do you want to summarize.\nMake sure it is long")
+        global Summaries
+        Summaries = False
+
+    elif message.content==message.content and Summaries==False:
+        long= message.content
+        await message.channel.send(addon.Summarizer(long))
+        Summaries = False
+
+    
+    
         
 #add a discord token this line of code
-bot.run('"INSERT DISCORD TOKEN HERE')
+bot.run('INSERT DISCORD TOKEN')
 
 
 
