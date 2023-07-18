@@ -29,14 +29,19 @@ import char                                                                     
 from char import hamster                                                                                         #
 #adding another character name mush                                                                              #
 import mush                                                                                                      #
-from mush import mushroom                                                                                       #
+from mush import mushroom                                                                                        #
+                                                                                                                 #
+#adding another another character name Timmy                                                                     #
+import Timmy                                                                                                     #
+from Timmy import roboTim                                                                                       #
 #---------------------------------------------------------------------------------------------------------------#
 #important and setted info for the correct request                                                              #
 username=  get_stored_username()                                                                                #
 age= get_stored_age()                                                                                           #
 player=hamster(name= username,age=age,recieve='neutral')                                                        #
                                                                                                                 #
-addon=mushroom()                                                                                                #
+addon=mushroom()
+robo=roboTim()                                                                                                  #
 #_______________________________________________________________________________________________________________#
 
 
@@ -361,7 +366,7 @@ async def on_message(message):
 
 #summarizer
     elif message.content== "?summary":
-        await message.channel.send("What do you want to summarize.\nMake sure it is long")
+        await message.channel.send("What do you want to summarize.\nMake sure it is 2 paragraphs long")
         global Summaries
         Summaries = False
 
@@ -370,11 +375,16 @@ async def on_message(message):
         await message.channel.send(addon.Summarizer(long))
         Summaries = False
 
+    elif message.content== "?identity":
+        await message.channel.send("loading")
+        await message.channel.send(robo.Isubmit())
+
+
     
     
         
 #add a discord token this line of code
-bot.run('INSERT DISCORD TOKEN')
+bot.run('Insert token here')
 
 
 
