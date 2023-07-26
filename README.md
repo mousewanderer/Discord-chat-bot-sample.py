@@ -34,3 +34,13 @@ Here are the list of functions
 ?factchange- Enable to on or off explict content of random fact
 
 ?passgen - Generates a password for security
+
+?russianroullete - PLays Russian ROullete
+ 
+?meme - Sends random memes
+ 
+?summary - Summamrize long paragraph (text)
+ 
+?identity - Generates a fake personal Identity
+
+?gramcor - Will give the correct formal grammar
