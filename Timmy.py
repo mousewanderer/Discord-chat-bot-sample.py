@@ -125,8 +125,6 @@ def identity():
    text = "gec: " + template
    settings = TTSettings(do_sample=True, top_k=10, temperature=0.5,  min_length=1, max_length=100)
    result = happy_tt.generate_text(text, args=settings)
-   result.text
-
    return info +  result.text
 
 
@@ -137,12 +135,22 @@ class roboTim:
     species="Mousewanderer's robot"
 
 
-    def __int__(self,identity):
-        self.identity= identity
+    def __int__(self,told):
+        self.told=told
   
 # used to get quotes 
     def Isubmit(self):
         return identity()
+
+    def gramCor(self,told):
+        template = told
+        happy_tt = HappyTextToText("T5", "prithivida/grammar_error_correcter_v1")
+        text = "gec: " + template
+        settings = TTSettings(do_sample=True, top_k=10, temperature=0.5,  min_length=1, max_length=100)
+        result = happy_tt.generate_text(text, args=settings)
+        return result.text
+        
+        
         
         
 

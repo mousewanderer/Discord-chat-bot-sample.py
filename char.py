@@ -148,10 +148,13 @@ class hamster:
         words13='?fact - Get the random fact\n \n'
         words14='?factchange- Enable to on or off explict content of random fact\n \n'
         words15='?passgen - Generates a password\n \n'
-        words16='?russianroullete - PLays Russian ROullete\n \n'
+        words16='?russianroullete - Plays Russian Roullete\n \n'
         words17="?meme - Sends random memes\n \n"
         words18="?summary - Summamrize long paragraph (text)\n \n"
         words19= "?identity - Generates a fake personal Identity\n\n"
+        words20="?gramcor (INSERT SENTENCE)- Will give the correct formal grammar \n\n"
+        
+        
         
         full_text=words + words1 + words2+ words4 + words5
         
@@ -159,7 +162,7 @@ class hamster:
         
         third_text = words12 + words13 + words14 + words15 + words16 + words17 + words18
 
-        fourth_text = words19
+        fourth_text = words19 + words20
         whole= full_text + second_text +third_text + fourth_text
         return whole
     

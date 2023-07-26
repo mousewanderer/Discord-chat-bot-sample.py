@@ -40,7 +40,7 @@ username=  get_stored_username()                                                
 age= get_stored_age()                                                                                           #
 player=hamster(name= username,age=age,recieve='neutral')                                                        #
                                                                                                                 #
-addon=mushroom()
+addon=mushroom()                                                                                                #
 robo=roboTim()                                                                                                  #
 #_______________________________________________________________________________________________________________#
 
@@ -65,6 +65,8 @@ creeet=True                                                                     
 #Russian Roullete                                                            _______________#
 RussianRoullete= True                                                       #
 Summaries=True                                                              #
+#Correct grammar                                                            #
+correctGram= True                                                           #
 #___________________________________________________________________________#
 
 
@@ -328,7 +330,8 @@ async def on_message(message):
 
  #Russian Roullete Game    
     elif message.content in '?russianroullete':
-        await message.channel.send('*Charlie suddenly changes his appearance into more sinister look')
+        msg = 'Charlie suddenly changes his appearance into more sinister look')
+        await message.channel.send(msg)
         await message.channel.send("I always bring my revolver around me. \nIn 1 bullet in 6 chambers, \nsay spin if you want it to spin. \nsay anything else then it is a shoot")
         global RussianRoullete #global function used to activate russian roullete in if_else
         RussianRoullete= False
@@ -373,11 +376,22 @@ async def on_message(message):
     elif message.content==message.content and Summaries==False:
         long= message.content
         await message.channel.send(addon.Summarizer(long))
-        Summaries = False
+        Summaries = True
 
     elif message.content== "?identity":
-        await message.channel.send("loading")
+        await message.channel.send("loading it will take more than 5 seconds")
         await message.channel.send(robo.Isubmit())
+
+    elif message.content in  "?gramcor":
+        await message.channel.send("Type 100 word auto-grammar check")
+        global correctGram
+        correctGram = False
+
+    elif message.content==message.content and correctGram==False:
+        msg = message.content
+        await message.channel.send("loading It will take more than 5 seconds")
+        await message.channel.send(robo.gramCor(told=msg))
+        correctGram = True
 
 
     
