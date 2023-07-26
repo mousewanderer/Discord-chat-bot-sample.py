@@ -1,19 +1,27 @@
 # Discord-chat-bot-sample.py
-This is just a discord chat bot sample that runs on python
+This is a multi-purpose chat discord chat bot sample that runs on python
+Json username intergration (unfixed) - Will fix this one
+
 
 Project name: A Discorad Chatbot created using python with multiple funtions 
-for a single and basic user interaction 
+meant for private message purposes
+Notable features: It can summarize long paragraphs, Create a Fake Identity and Can correct your grammar.
+Storage required: 4.01 GB (due to installation of 2GB worth of Large language model imported from pytorh 
+for Summarizer tool and another 2GB worth of LLM for the grammar correction tool
 
 Project skills: Modules involved in this project random, request, bs4,
-Discord API for python, time, randfact,
+Discord API for python, time, randfact, Json, ntlk 
 
 
 Here are the list of functions
 ?math- for perform calculation 
+(using eval() expression to calculate)
 
 ?change - changes the username
+(interchangable username using json and POssibly use golbal function)
 
 ?cointoss - flip a coin
+(random module)
 
 ?rps - Chatbot attempt to do rock paper scissors
 
