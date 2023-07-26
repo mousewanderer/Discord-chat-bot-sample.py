@@ -152,7 +152,7 @@ class hamster:
         words17="?meme - Sends random memes\n \n"
         words18="?summary - Summamrize long paragraph (text)\n \n"
         words19= "?identity - Generates a fake personal Identity\n\n"
-        words20="?gramcor (INSERT SENTENCE)- Will give the correct formal grammar \n\n"
+        words20="?gramcor -  Will give the correct formal grammar \n\n"
         
         
         
