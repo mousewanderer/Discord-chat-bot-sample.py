@@ -26,7 +26,9 @@ Here are the list of functions
 '?math'- for perform calculation 
 (using eval() expression to calculate)
 
-'''?change''' - changes the username
+'''
+?change
+''' - changes the username
 (interchangable username using json and POssibly use golbal function)
 
 '''?cointoss''' - flip a coin
