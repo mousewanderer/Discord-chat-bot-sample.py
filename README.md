@@ -3,19 +3,27 @@ This is a multi-purpose chat discord chat bot sample that runs on python
 Json username intergration (unfixed) - Will fix this one
 
 
-#Project name: A Discorad Chatbot created using python with multiple funtions 
+# Project name: A Discorad Chatbot created using python with multiple funtions 
 meant for private message purposes.
 
-Notable features: It can summarize long paragraphs, Create a Fake Identity and Can correct your grammar.
-Storage required: 4.01 GB (due to installation of 2GB worth of Large language model imported from pytorh 
+- Notable features: It can summarize long paragraphs, Create a Fake Identity and can correct your grammar.
+- Storage required: 4.01 GB (due to installation of 2GB worth of Large language model imported from pytorh 
 for Summarizer tool and another 2GB worth of LLM for the grammar correction tool
 
-Project skills: Modules involved in this project random, request, bs4,
-Discord API for python, time, randfact, Json, ntlk 
+Project skills: Modules involved in this Chatbot are 
+- random
+- request
+- bs4
+- Discord API for python
+- time
+- randfact
+- Json
+- ntlk
+- pytorch
 
 
 Here are the list of functions
-'''?math '''- for perform calculation 
+'?math'- for perform calculation 
 (using eval() expression to calculate)
 
 '''?change''' - changes the username
