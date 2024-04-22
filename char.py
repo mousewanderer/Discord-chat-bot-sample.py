@@ -36,6 +36,21 @@ def get_crypto_price(coin):
     return text
 
 
+def convert_temperature(temperature, unit_from, unit_to):
+    conversions = {
+        ('a', 'c'): lambda x: x * 9 / 5 + 32,
+        ('a', 'b'): lambda x: x + 273.15,
+        ('c', 'a'): lambda x: (x - 32) * 5 / 9,
+        ('c', 'b'): lambda x: (x + 459.67) * 5 / 9,
+        ('b', 'a'): lambda x: x - 273.15,
+        ('b', 'c'): lambda x: x * 9 / 5 - 459.67,
+        ('a', 'a'): lambda x: x,
+        ('b', 'b'): lambda x: x,
+        ('c', 'c'): lambda x: x,
+        }
+    return conversions[(unit_from.lower(), unit_to.lower())](temperature)
+
+
 class hamster:
     '''Character hamster Charlie'''
     species = "Phodopus Sungorus"
@@ -134,25 +149,31 @@ class hamster:
 
     def help(self):
         words = ' HERE ARE THE LIST OF COMMANDS BE SURE TO ON NOTIFICATIONS FOR BETTER EXPERIENCE \n \n'
-        words1 = '?help - for the list of commands \n \n'
-        words2 = '?math- for perform calculation \n \n'
-        words4 = '?change - changes the username \n \n'
-        words5 = '?cointoss - flip a coin\n\n'
-        words6 = '?rps - rock paper scissors\n\n'
-        words7 = '?casual - random casual talk \n \n'
-        words8='?dice - rolling numbers from 1 to 6 \n \n'
-        words9='?pomodoro - This sets the pomodoro technique \n \n'
+        words1 = '?help - for the list of commands \n '
+        words2 = '?math- for perform calculation \n '
+        words4 = '?change - changes the username \n '
+        words5 = '?cointoss - flip a coin\n'
+        words6 = '?rps - rock paper scissors\n'
+        words7 = '?casual - random casual talk \n '
+        words8='?dice - rolling numbers from 1 to 6 \n '
+        words9='?pomodoro - This sets the pomodoro technique \n'
         words10='?5217 - This sets the 52/17 technique \n \n'
-        words11='?quotes - Giving random inspirational quotes \n \n'
-        words12='?cryptoprice (coins) - Get the price of the cryptocurrency \n \n'
-        words13='?fact - Get the random fact\n \n'
-        words14='?factchange- Enable to on or off explict content of random fact\n \n'
-        words15='?passgen - Generates a password\n \n'
-        words16='?russianroullete - Plays Russian Roullete\n \n'
-        words17="?meme - Sends random memes\n \n"
-        words18="?summary - Summamrize long paragraph (text)\n \n"
-        words19= "?identity - Generates a fake personal Identity\n\n"
-        words20="?gramcor -  Will give the correct formal grammar \n\n"
+        
+        words11='?quotes - Giving random inspirational quotes \n'
+        words12='?cryptoprice (coins) - Get the price of the cryptocurrency \n '
+        words13='?fact - Get the random fact\n '
+        words14='?factchange- Enable to on or off explict content of random fact\n '
+        words15='?passgen - Generates a password\n '
+        words16='?russianroullete - Plays Russian Roullete\n '
+        words17="?meme - Sends random memes\n "
+        words18="?summary - Summamrize long paragraph (text)\n "
+        words19= "?identity - Generates a fake personal Identity\n"
+        words20="?gramcor - Will give the correct formal grammar \n\n"
+        
+        words21 = "?bmi - will calculate boby mass index\n"
+        words22 = "?time - will print the exact current time\n"
+        words22 = "?temp - will convert temperature to another temperature\n"
+        
         
         
         
@@ -162,7 +183,8 @@ class hamster:
         
         third_text = words12 + words13 + words14 + words15 + words16 + words17 + words18
 
-        fourth_text = words19 + words20
+        fourth_text = words19 + words20 + words21 + words22 
+        
         whole= full_text + second_text +third_text + fourth_text
         return whole
     
@@ -172,3 +194,5 @@ class hamster:
     #Get the price of the crypto currency
         price = get_crypto_price(coin=crypto)
         return price
+
+    

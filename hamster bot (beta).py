@@ -12,7 +12,7 @@ from urllib import parse, request        # /
 #________________________________________#/
 #
 #
-#
+#Version 1.0 (starting version control)
 #
 #
 #
@@ -44,6 +44,16 @@ addon=mushroom()                                                                
 robo=roboTim()                                                                                                  #
 #_______________________________________________________________________________________________________________#
 
+#BMI______
+w = False##
+h = False#
+#--------#
+
+#Temperature#
+y = False   #   
+u1 = False  #
+u2 = False  #
+#************
 
 
 #____________________________________________________________________________________________
@@ -69,10 +79,12 @@ Summaries=True                                                              #
 correctGram= True                                                           #
 #___________________________________________________________________________#
 
+intents = discord.Intents.all()
+intents.message_content = True #v2
 
 
 # The bottom line is the discord bot running code for commands 
-bot = commands.Bot(command_prefix="!",intents=discord.Intents.default())
+bot = commands.Bot(command_prefix="?",intents=intents)
 #used to notify the 
 @bot.event
 async def on_ready():
@@ -243,13 +255,14 @@ async def on_message(message):
         await message.channel.send(player.cryptoPrice(recieve=msg))
         
 # adding quotes function
-    elif '?quote' in message.content:
+    elif '?quote' == message.content:
         await message.channel.send(addon.get_quote())
 
-    elif '?cointoss' in message.content:
+    elif '?cointoss' == message.content:
         cointoss=['The coin landed on heads', 'The coin landed on tails']
         coinrange=choice(cointoss)
         await message.channel.send(coinrange)
+        
 # rock paper scissors 
     elif message.content == '?rps':
         await message.channel.send('okay I will play')
@@ -258,33 +271,33 @@ async def on_message(message):
         turn= False
 
     elif message.content== message.content and turn==False:
-        winner="you win this round"
-        loser="you lose this round"
-        draw="This is a draw"
-        target= message.content.lower()
+        user_choice= message.content.lower()
         Item=['rock','paper','scissor']
-        aibet=choice(Item)
-        if aibet == 'scissor':
-            if target== 'rock' and target in Item:
-                result=winner
-            elif target =="scissor" and target in Item:
-                result=draw
-            else: result= loser
-        elif aibet== "rock":
-            if target=="paper" and target in Item:
-                result= winner
-            elif target== "rock" and target in Item:
-                result= draw
-            else: result =loser
-        elif aibet=="paper":
-            if target=="scissor" and target in Item:
-                result=winner
-            elif target=="paper" and target in Item:
-                result=draw
-            else: result= loser
-        else: result="sorry invalid item"
-        await message.channel.send(result)
-        turn= True
+        
+
+        if user_choice in ['rock', 'paper', 'scissors']:
+            computer_choice = random.choice(['rock', 'paper', 'scissors'])
+            await message.channel.send(f"I pick {computer_choice}")
+            if user_choice == computer_choice:
+                result = "It's a tie!"
+            elif (user_choice == 'rock' and computer_choice == 'scissors') or \
+                 (user_choice == 'paper' and computer_choice == 'rock') or \
+                 (user_choice == 'scissors' and computer_choice == 'paper'):
+                result = "You win!"
+            else:
+                result = "Computer wins!"
+        
+            await message.channel.send(result)
+            turn = True
+        else:
+            await message.channel.send("Invalid choice. Please choose rock, paper, or scissors.")
+
+        
+        
+        
+    
+
+      
         
 #Generating facts
     elif '?fact' == message.content:
@@ -329,8 +342,8 @@ async def on_message(message):
         passgenerator= True
 
  #Russian Roullete Game    
-    elif message.content in '?russianroullete':
-        msg = 'Charlie suddenly changes his appearance into more sinister look')
+    elif message.content == '?russianroullete':
+        msg = 'Charlie suddenly changes his appearance into more sinister look'
         await message.channel.send(msg)
         await message.channel.send("I always bring my revolver around me. \nIn 1 bullet in 6 chambers, \nsay spin if you want it to spin. \nsay anything else then it is a shoot")
         global RussianRoullete #global function used to activate russian roullete in if_else
@@ -360,6 +373,7 @@ async def on_message(message):
         else:
             await message.channel.send("My Gun is broken")
         RussianRoullete= True
+        
 #sends random memes
     elif message.content=="?meme" :
         content = requests.get("https://meme-api.com/gimme").text
@@ -382,7 +396,7 @@ async def on_message(message):
         await message.channel.send("loading it will take more than 5 seconds")
         await message.channel.send(robo.Isubmit())
 
-    elif message.content in  "?gramcor":
+    elif message.content ==  "?gramcor":
         await message.channel.send("Type 100 word auto-grammar check")
         global correctGram
         correctGram = False
@@ -394,11 +408,129 @@ async def on_message(message):
         correctGram = True
 
 
+    #BMI calculator
+
+    elif message.content== "?bmi":
+        await message.channel.send("BMI calculate")
+        global w
+        w = True
+        await message.channel.send("enter Weight (in kilograms):")
+
+    elif message.content==message.content and w == True:
+        if int(message.content) < 1 or message.content == "-0" or int(message.content) > 700:
+            await message.channel.send("Impossible")
+        else:
+            global weight
+            weight = int(message.content)
+            w = False
+            global h
+            h = True
+            await message.channel.send("enter Height (in Meters):")
+
+    elif message.content==message.content and h ==True:
+        if float(message.content) < 0.1 or message.content == "-0" or float(message.content) > 5:
+            await message.channel.send("Impossible")
+        else:
+            global height
+            height = float(message.content)
+            h = False
+
+        x = weight / float(height * height)
+        await message.channel.send(f"Your BMI is {str(round(x,2))}")
+        if x < 18.5:
+            await message.channel.send('Underweight')
+        elif x >= 18.5 and x < 25:
+            await message.channel.send("Normal")
+        elif x >= 25 and x < 30:
+            await message.channel.send('Slightly Obese')
+        elif x >= 30 and x < 35:
+            await message.channel.send('Obese')
+        elif x >= 35:
+            await message.channel.send('Clinically Obese')
+#Time declared
+
+    elif message.content=="?time":
+        c = "UTC Time: ", datetime.datetime.utcnow()
+        await message.channel.send(c)
+
+
+
+    elif message.content=="?temp":
+        await message.channel.send("Enter the temperature: ")
+        global y
+        y = True
+        
+
+    elif message.content==  message.content and y ==True :
+        if str(message.content) == "-0":
+                raise ValueError
+        else:
+            global temperature
+            temperature = float(message.content)
+            y = False
+            global u1
+            u1 = True
+            await message.channel.send("""
+                           A. Celsuis
+                  B. Kelvin
+                  C. Fahrenheit
+                  """)
+            await message.channel.send("Enter the unit (from): ")
+
+    elif message.content==message.content and u1 == True:
+         global unit_from
+         unit_from = message.content.lower()
+         if unit_from in {"a", "b", "c"}:
+             u1 = False
+             global u2
+             u2 = True
+             await message.channel.send("""
+                           A. Celsuis
+                  B. Kelvin
+                  C. Fahrenheit
+                  """)
+             await message.channel.send("Enter the unit (to): ")
+         else:
+            await message.channel.send("Error Please Enter a, b and c")
+
+    elif message.content==message.content and u2 == True:
+        global unit_to
+        unit_to= message.content.lower()
+        if unit_to in {"a", "b", "c"}:
+            u2 = False
+            converted_temperature = char.convert_temperature(temperature, unit_from, unit_to)
+            if unit_from == "a":
+                unit_from = "Celsuis"
+            elif unit_from == "b":
+                unit_from = "Kelvin"
+            elif unit_from == "c":
+                unit_from = "fahreinheit"
+            else:
+                pass
+        
+            if unit_to == "a":
+                unit_to = "Celsuis"
+            elif unit_to == "b":
+                unit_to = "Kelvin"
+            elif unit_to == "c":
+                unit_to = "fahreinheit"
+            else:
+                pass
+            await message.channel.send(f"{temperature} {unit_from.capitalize()} is equal to {round(converted_temperature, 2)} {unit_to.capitalize()}")
+    
+        else:
+            await message.channel.send("Error Please Enter a, b and c")
+            
+    
+
+
+
+
     
     
         
 #add a discord token this line of code
-bot.run('Insert token here')
+bot.run("")
 
 
 
