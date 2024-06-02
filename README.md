@@ -3,11 +3,11 @@ This is a multi-purpose chat discord chat bot sample that runs on python
 Json username intergration (unfixed) - Will fix this one
 
 
-# Project name: A Discorad Chatbot created using python with multiple funtions 
+# Project name: A Discord Chatbot created using python with multiple funtions 
 meant for private message purposes.
 
 - Notable features: It can summarize long paragraphs, Create a Fake Identity and can correct your grammar.
-- Storage required: 4.01 GB (due to installation of 2GB worth of Large language model imported from pytorh 
+- Storage required: 4.01 GB (due to installation of 2GB worth of Large language model imported from pytorch 
 for Summarizer tool and another 2GB worth of LLM for the grammar correction tool
 
 Project skills: Modules involved in this Chatbot are 
