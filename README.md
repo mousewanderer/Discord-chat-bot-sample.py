@@ -22,8 +22,8 @@ meant for private message purposes.
 
 
 > [!NOTE] Here are the list of functions
->`?math`- performs basic arithmetic calculation 
->
+> ?math`- performs basic arithmetic calculation
+> 
 >`?change` - changes the username
 >
 >`?cointoss` - flip a coin
