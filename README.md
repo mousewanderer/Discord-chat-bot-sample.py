@@ -26,22 +26,34 @@ Project skills: Modules involved in this Chatbot are
 
 Here are the list of functions
 `?math`- for perform calculation (using eval() expression to calculate)
+
 `?change` - changes the username
 
 `?cointoss` - flip a coin
 
 `?rps` - Chatbot attempt to do rock paper scissors
+
 `?casual` - Random casual talk to chat with
+
 `?dice` - rolling numbers from 1 to 6 
+
 `?pomodoro` - This sets the pomodoro timer for productivity
+
 `?5217` - This sets the 52/17 timer for productivity
+
 `?quotes`- Generate random inspirational quotes 
+
 `?cryptoprice` (E.g. BTC) - Get the price of the cryptocurrency 
+
 `?fact` - Generate the random fact 
+
 `?factchange`- Enable to on or off explict content of random fact
-`?passgen` - Generates a password for security
-`?russianroullete` - PLays Russian ROullete
-`?meme` - Sends random memes
+Generates a password for security
+`?passgen` 
+Plays Russian Roullete
+`?russianroullete`  
+Sends random memes
+`?meme`
 `?summary` - Summamrize long paragraph (text)
 `?identity` - Generates a fake personal Identity
 ?gramcor - Will give the correct formal grammar
