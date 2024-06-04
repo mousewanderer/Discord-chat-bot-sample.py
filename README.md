@@ -21,8 +21,10 @@ meant for private message purposes.
 > Storage required: 4.01 GB (due to installation of 2GB worth of Large language model imported from Gramformer for Summarizer tool and another 2GB worth of LLM for the grammar correction tool by ntlk
 
 
-> [!NOTE] Here are the list of functions
-> ?math`- performs basic arithmetic calculation
+> [!NOTE]
+> Here are all the functions
+> 
+> `?math`- performs basic arithmetic calculation
 > 
 >`?change` - changes the username
 >
