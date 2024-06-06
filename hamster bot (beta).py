@@ -293,12 +293,6 @@ async def on_message(message):
             await message.channel.send("Invalid choice. Please choose rock, paper, or scissors.")
 
         
-        
-        
-    
-
-      
-        
 #Generating facts
     elif '?fact' == message.content:
         change= Explict_stored()
@@ -530,7 +524,7 @@ async def on_message(message):
     
         
 #add a discord token this line of code
-bot.run("")
+bot.run("INSERT TOKEN FROM DISCORD BOT")
 
 
 

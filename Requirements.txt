@@ -1,0 +1,11 @@
+urllib3
+numpy
+names
+randomname
+discord.py
+beautifulsoup4
+requests
+randfacts
+nltk
+cdifflib
+happytransformer
