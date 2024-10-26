@@ -11,7 +11,8 @@ meant for private message purposes.
 5. Run the command  `python download_script.py`
 6. This will pop up if properly installed ![screenshot](https://github.com/mousewanderer/Discord-chat-bot-sample.py/assets/108565870/4d46bdd0-0954-4587-aa6c-e879a9078f50)
 7. Then click download wait a very long time
-8. Finally run `python hamster bot (beta).py`
+8. using the generate token bot from the discord developer portal ---> tutorial ( https://youtu.be/zrNloK9b1ro?si=cErfPPE0DcCsHREB )
+9. Finally run `python hamster bot (beta).py`
 
    
 
