@@ -66,3 +66,7 @@ meant for private message purposes.
 >`?time` - will print the exact current time
 >
 >`?temp` - will convert temperature to another temperature
+
+
+## Updates
+- Quiz bot intergration
