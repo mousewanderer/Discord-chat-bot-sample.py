@@ -68,5 +68,6 @@ meant for private message purposes.
 >`?temp` - will convert temperature to another temperature
 
 
-## Updates
-- Quiz bot intergration
+## Sad Updates
+- My laptop was hacked and catch a harmful virus so I have to reformat all of my laptop and Quiz bot intergration will not continue
+
