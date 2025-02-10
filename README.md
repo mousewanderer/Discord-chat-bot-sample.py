@@ -17,7 +17,7 @@ meant for private message purposes.
    
 
 
-- Notable features: It can summarize long paragraphs, Create a Fake Identity and can correct your grammar.
+- Notable features: It can summarize long paragraphs, Create a mock up False Identity generated in the internet and can correct your grammar.
 > [!IMPORTANT]
 > Storage required: 4.01 GB (due to installation of 2GB worth of Large language model imported from Gramformer for Summarizer tool and another 2GB worth of LLM for the grammar correction tool by ntlk
 
@@ -45,13 +45,13 @@ meant for private message purposes.
 >
 >`?cryptoprice (Insert 3 letters e.g. BTC) `- Get the price of the cryptocurrency 
 >
->`?fact` - generates the trival information
+>`?fact` - generates the trival information in general eductaion
 >
 >`?factchange`- Enable to on or off explict content of random fact
 >
 >`?passgen` - Generates a password for security
 >
->`?russianroullete` - Plays Russian Roullete
+>`?russianroullete` - Plays Russian Roullete for some fun
 >
 >`?meme` - Sends random memes
 >
@@ -61,13 +61,14 @@ meant for private message purposes.
 >
 >`?gramcor` - Will give the correct formal grammar
 >
->`?bmi` - will calculate boby mass index
+>`?bmi` - will calculate body mass index
 >
->`?time` - will print the exact current time
+>`?time` - will print the exact current time based on your location
 >
 >`?temp` - will convert temperature to another temperature
 
 
 ## Sad Updates
 - My laptop was hacked and catch a harmful virus so I have to reformat all of my laptop and Quiz bot intergration will not continue
+- And I made this as my main coding project which is a multiple a chat bot development 
 
